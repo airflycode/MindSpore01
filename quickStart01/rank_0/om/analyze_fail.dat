@@ -1,0 +1,110 @@
+# [No.1] after_grad.79
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(372)/                def after_grad(*args):/
+funcgraph fg_79(
+        %para1 : Tensor(F32)[2, 3]    # args0
+        , %para2 : Tensor(F32)[3, 3]    # args1
+        , %para3 : Ref[Tensor(F32)][1]    # net.z
+    ) {
+    %1 : Tuple[Tensor(F32)*2] = Primitive::MakeTuple{prim_type=1}(%para1, %para2)    #(Tensor(F32)[2, 3], Tensor(F32)[3, 3]) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(372)/                def after_grad(*args):/#[CNode]87
+    %2 : Func = UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_78, %1)    #(Func, Tuple[Tensor(F32)*2])    # fg_78=construct.78 #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %3 : Func = DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%2, None)    #(Func, NoneType) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+
+#------------------------> 0
+    %4 = UnpackCall::unpack_call(%3, %1)    #(Func, Tuple[Tensor(F32)*2]) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#[CNode]89
+}
+# order:
+#   1: after_grad.79:88{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> construct.78, [2]: [CNode]87}
+#   2: after_grad.79:88{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: 88, [2]: ValueNode<None> None}
+#   3: after_grad.79:88{[0]: ValueNode<UnpackCall> unpack_call.90, [1]: 88, [2]: [CNode]87}
+#   4: after_grad.79:[CNode]89{[0]: ValueNode<Primitive> Return, [1]: 88}
+
+
+# [No.2] UnpackCall.80
+
+funcgraph fg_80(
+        %para4 : Func    # 81
+        , %para5 : Tuple[Tensor(F32)*2]    # 82
+    ) {
+    %1 : Tensor(F32)[2, 3] = Primitive::TupleGetItem{prim_type=1}(%para5, I64(0))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
+#91
+    %2 : Tensor(F32)[3, 3] = Primitive::TupleGetItem{prim_type=1}(%para5, I64(1))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
+#92
+
+#------------------------> 1
+    %3 = %para4(%1, %2)    #(Tensor(F32)[2, 3], Tensor(F32)[3, 3]) #scope: Default
+#93
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+#94
+}
+# order:
+#   1: UnpackCall.80:93{[0]: 81, [1]: 91, [2]: 92}
+#   2: UnpackCall.80:94{[0]: ValueNode<Primitive> Return, [1]: 93}
+
+
+# [No.3] construct.83
+# In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_11116\3171914900.py(8)/
+funcgraph fg_83[fg_95](
+        %para6 : Tensor(F32)[2, 3]    # construct
+        , %para7 : Tensor(F32)[3, 3]    # construct
+    ) {
+    %1 : $(construct.95):Func = Primitive::J{prim_type=1}[side_effect_propagate=I64(1)](%para-1)    #(Func) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %2 : Tuple[Tensor(F32),Func] = %1(%para6, %para7)    #(Tensor(F32)[2, 3], Tensor(F32)[3, 3]) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %3 : Func = Primitive::TupleGetItem{prim_type=1}(%2, I64(1))    #(Tuple[Tensor(F32),Func], I64) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %4 : Tensor(F32)[2, 3] = Primitive::TupleGetItem{prim_type=1}(%2, I64(0))    #(Tuple[Tensor(F32),Func], I64) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %5 : Tensor(F32)[2, 3] = HyperMapPy::hyper_map[ones_like_leaf]{fn_leaf=MultitypeFuncGraph::ones_like_leaf{(Func), (SparseTensor), (Tensor), (TypeType), (Number)}}(%4)    #(Tensor(F32)[2, 3]) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %6 : Tuple[EnvType,Tensor(F32)*2] = %3(%5)    #%3.prototype = (Tensor(F32)[2, 3]) -> Tuple[EnvType,Tensor(F32)*2]     #(Tensor(F32)[2, 3]) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %7 : EnvType = Primitive::TupleGetItem{prim_type=1}(%6, I64(0))    #(Tuple[EnvType,Tensor(F32)*2], I64) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    %8 : Func = Primitive::Partial{prim_type=1}[side_effect_propagate=I64(1)](MultitypeFuncGraph::env_get{(EnvType, Tensor)}, %7)    #(Func, EnvType) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+
+#------------------------> 2
+    %9 = HyperMap::hyper_map(%8, %para-1)    #(Func, NoneType) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+    Primitive::Return{prim_type=1}(%9)    #(Undefined) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\ops\composite\base.py(373)/                    return grad_(fn, weights)(*args)/#88
+}
+# order:
+#   1: construct.83:88{[0]: 88, [1]: construct, [2]: construct}
+#   2: construct.83:88{[0]: ValueNode<Primitive> TupleGetItem, [1]: 88, [2]: ValueNode<Int64Imm> 0}
+#   3: construct.83:88{[0]: ValueNode<Primitive> TupleGetItem, [1]: 88, [2]: ValueNode<Int64Imm> 1}
+#   4: construct.83:88{[0]: ValueNode<HyperMapPy> hyper_map[ones_like_leaf].41, [1]: 88}
+#   5: construct.83:88{[0]: 88, [1]: 88}
+#   6: construct.83:88{[0]: ValueNode<Primitive> TupleGetItem, [1]: 88, [2]: ValueNode<Int64Imm> 0}
+#   7: construct.83:88{[0]: ValueNode<Primitive> Partial, [1]: ValueNode<MultitypeFuncGraph> env_get.23, [2]: 88}
+#   8: construct.83:88{[0]: ValueNode<HyperMap> hyper_map.96, [1]: 88, [2]: 97}
+#   9: construct.83:88{[0]: ValueNode<Primitive> Return, [1]: 88}
+
+
+# [No.4] hyper_map.84
+
+funcgraph fg_84(
+        %para8 : Func    # [Parameter]85
+        , %para9 : NoneType    # [Parameter]86
+    ) {
+
+#------------------------> 3
+    %1 = %para8(%para9)    #(NoneType) #scope: Default
+#[CNode]98
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+#[CNode]99
+}
+# order:
+#   1: hyper_map.84:[CNode]98{[0]: [Parameter]85, [1]: [Parameter]86}
+#   2: hyper_map.84:[CNode]99{[0]: ValueNode<Primitive> Return, [1]: [CNode]98}
+
+
+#===============================================================================
+# num of function graphs in stack: 4
