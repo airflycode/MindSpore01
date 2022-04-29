@@ -1,242 +1,141 @@
-# [No.1] construct_wrapper.86
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(360)/    def construct(self, *inputs):/
-funcgraph fg_86(
-        %para1 : Tensor(F32)[64, 1, 28, 28]    # inputs0
-        , %para2 : Tensor(F32)[64]    # inputs1
-        , %para3 : Ref[Tensor(F32)][6, 1, 5, 5]    # conv1.weight
-        , %para4 : Ref[Tensor(F32)][16, 6, 5, 5]    # conv2.weight
-        , %para5 : Ref[Tensor(F32)][120, 256]    # fc1.weight
-        , %para6 : Ref[Tensor(F32)][120]    # fc1.bias
-        , %para7 : Ref[Tensor(F32)][84, 120]    # fc2.weight
-        , %para8 : Ref[Tensor(F32)][84]    # fc2.bias
-        , %para9 : Ref[Tensor(F32)][10, 84]    # fc3.weight
-        , %para10 : Ref[Tensor(F32)][10]    # fc3.bias
-        , %para11 : Ref[Tensor(F32)][6, 1, 5, 5]    # accum.conv1.weight
-        , %para12 : Ref[Tensor(F32)][16, 6, 5, 5]    # accum.conv2.weight
-        , %para13 : Ref[Tensor(F32)][120, 256]    # accum.fc1.weight
-        , %para14 : Ref[Tensor(F32)][120]    # accum.fc1.bias
-        , %para15 : Ref[Tensor(F32)][84, 120]    # accum.fc2.weight
-        , %para16 : Ref[Tensor(F32)][84]    # accum.fc2.bias
-        , %para17 : Ref[Tensor(F32)][10, 84]    # accum.fc3.weight
-        , %para18 : Ref[Tensor(F32)][10]    # accum.fc3.bias
-        , %para19 : Ref[Tensor(F32)][6, 1, 5, 5]    # stat.conv1.weight
-        , %para20 : Ref[Tensor(F32)][16, 6, 5, 5]    # stat.conv2.weight
-        , %para21 : Ref[Tensor(F32)][120, 256]    # stat.fc1.weight
-        , %para22 : Ref[Tensor(F32)][120]    # stat.fc1.bias
-        , %para23 : Ref[Tensor(F32)][84, 120]    # stat.fc2.weight
-        , %para24 : Ref[Tensor(F32)][84]    # stat.fc2.bias
-        , %para25 : Ref[Tensor(F32)][10, 84]    # stat.fc3.weight
-        , %para26 : Ref[Tensor(F32)][10]    # stat.fc3.bias
-        , %para27 : Ref[Tensor(F32)][]    # momentum
-        , %para28 : Ref[Tensor(F32)][]    # learning_rate
+# [No.1] construct_wrapper.27
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(109)/    def construct(self, data, label):/
+funcgraph fg_27(
+        %para1 : Tensor(U8)[28, 28, 1]    # data
+        , %para2 : Tensor(U32)[]    # label
+        , %para3 : Ref[Tensor(F32)][10]    # fc3.bias
+        , %para4 : Ref[Tensor(F32)][10, 84]    # fc3.weight
+        , %para5 : Ref[Tensor(F32)][84]    # fc2.bias
+        , %para6 : Ref[Tensor(F32)][84, 120]    # fc2.weight
+        , %para7 : Ref[Tensor(F32)][16, 6, 5, 5]    # conv2.weight
+        , %para8 : Ref[Tensor(F32)][120]    # fc1.bias
+        , %para9 : Ref[Tensor(F32)][120, 256]    # fc1.weight
+        , %para10 : Ref[Tensor(F32)][6, 1, 5, 5]    # conv1.weight
     ) {
-    %1 : Tuple[Tensor(F32)*2] = Primitive::MakeTuple{prim_type=1}(%para1, %para2)    #(Tensor(F32)[64, 1, 28, 28], Tensor(F32)[64]) #scope: Default
-#[CNode]98
 
 #------------------------> 0
-    %2 = UnpackCall::unpack_call(FuncGraph::fg_99, %1)    #(Func, Tuple[Tensor(F32)*2])    # fg_99=construct.99 #scope: Default
-#[CNode]100
-    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(366)/        return loss/#[CNode]101
+    %1 = FuncGraph::fg_28(%para1, %para2)    #(Tensor(U8)[28, 28, 1], Tensor(U32)[])    # fg_28=construct.28 #scope: Default
+#[CNode]32
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]33
 }
 # order:
-#   1: construct_wrapper.86:[CNode]100{[0]: ValueNode<UnpackCall> unpack_call.102, [1]: ValueNode<FuncGraph> construct.99, [2]: [CNode]98}
-#   2: construct_wrapper.86:[CNode]101{[0]: ValueNode<Primitive> Return, [1]: [CNode]100}
+#   1: construct_wrapper.27:[CNode]32{[0]: ValueNode<FuncGraph> construct.28, [1]: data, [2]: label}
+#   2: construct_wrapper.27:[CNode]33{[0]: ValueNode<Primitive> Return, [1]: [CNode]32}
 
 
-# [No.2] UnpackCall.87
-
-funcgraph fg_87(
-        %para29 : Func    # 88
-        , %para30 : Tuple[Tensor(F32)*2]    # 89
+# [No.2] construct.28
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(109)/    def construct(self, data, label):/
+funcgraph fg_28[fg_27](
+        %para11 : Tensor(U8)[28, 28, 1]    # data
+        , %para12 : Tensor(U32)[]    # label
     ) {
-    %1 : Tensor(F32)[64, 1, 28, 28] = Primitive::TupleGetItem{prim_type=1}(%para30, I64(0))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
-#103
-    %2 : Tensor(F32)[64] = Primitive::TupleGetItem{prim_type=1}(%para30, I64(1))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
-#104
 
 #------------------------> 1
-    %3 = %para29(%1, %2)    #(Tensor(F32)[64, 1, 28, 28], Tensor(F32)[64]) #scope: Default
-#105
-    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
-#106
+    %1 = FuncGraph::fg_29(%para11)    #(Tensor(U8)[28, 28, 1])    # fg_29=construct.29 #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(110)/        out = self._backbone(data)/#out
+    %2 = FuncGraph::fg_34(%1, %para12)    #(Undefined, Tensor(U32)[])    # fg_34=construct.34 #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]35
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]36
 }
 # order:
-#   1: UnpackCall.87:105{[0]: 88, [1]: 103, [2]: 104}
-#   2: UnpackCall.87:106{[0]: ValueNode<Primitive> Return, [1]: 105}
+#   1: construct.28:out{[0]: ValueNode<FuncGraph> construct.29, [1]: data}
+#   2: construct.28:[CNode]35{[0]: ValueNode<FuncGraph> construct.34, [1]: out, [2]: label}
+#   3: construct.28:[CNode]36{[0]: ValueNode<Primitive> Return, [1]: [CNode]35}
 
 
-# [No.3] construct.90
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(360)/    def construct(self, *inputs):/
-funcgraph fg_90[fg_86](
-        %para31 : Tensor(F32)[64, 1, 28, 28]    # inputs0
-        , %para32 : Tensor(F32)[64]    # inputs1
+# [No.3] construct.29
+# In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(47)/
+funcgraph fg_29[fg_27](
+        %para13 : Tensor(U8)[28, 28, 1]    # x
     ) {
-    %1 : Tuple[Tensor(F32)*2] = Primitive::MakeTuple{prim_type=1}(%para31, %para32)    #(Tensor(F32)[64, 1, 28, 28], Tensor(F32)[64]) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(360)/    def construct(self, *inputs):/#[CNode]107
 
 #------------------------> 2
-    %2 = UnpackCall::unpack_call(FuncGraph::fg_94, %1)    #(Func, Tuple[Tensor(F32)*2])    # fg_94=construct.94 #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(361)/        loss = self.network(*inputs)/#loss
-    %3 = Primitive::getattr{prim_type=1}(%2, "dtype")    #(Undefined, Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(362)/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#[CNode]108
-    %4 = Primitive::getattr{prim_type=1}(%2, "shape")    #(Undefined, Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(362)/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#[CNode]109
-    %5 = DoSignaturePrimitive::S-Prim-Fill{prim_type=1}(%3, %4, F32(1))    #(Undefined, Undefined, Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(362)/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#sens
-    %6 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%5)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(363)/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#[CNode]110
-    %7 = UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_94, %1, %6)    #(Undefined, Tuple[Tensor(F32)*2], Undefined)    # fg_94=construct.94 #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(363)/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
-    %8 = Primitive::MakeTuple{prim_type=1}(%para3, %para4, %para5, %para6, %para7, %para8, %para9, %para10)    #(Ref[Tensor(F32)][6, 1, 5, 5], Ref[Tensor(F32)][16, 6, 5, 5], Ref[Tensor(F32)][120, 256], Ref[Tensor(F32)][120], Ref[Tensor(F32)][84, 120], Ref[Tensor(F32)][84], Ref[Tensor(F32)][10, 84], Ref[Tensor(F32)][10]) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(363)/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#[CNode]111
-    %9 = DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%7, %8)    #(Undefined, Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(363)/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
-    %10 = UnpackCall::unpack_call(%9, %1, %6)    #(Undefined, Tuple[Tensor(F32)*2], Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(363)/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
-    %11 = DoSignaturePrimitive::S-Prim-identity{prim_type=1}[side_effect_propagate=I64(1)](%10)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(364)/        grads = self.grad_reducer(grads)/#grads
-    %12 = FuncGraph::fg_112(%11)    #(Undefined)    # fg_112=construct.112 #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(365)/        loss = F.depend(loss, self.optimizer(grads))/#[CNode]113
-    %13 = DoSignaturePrimitive::S-Prim-Depend{prim_type=1}[side_effect_propagate=I64(1)](%2, %12)    #(Undefined, Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(365)/        loss = F.depend(loss, self.optimizer(grads))/#loss
-    Primitive::Return{prim_type=1}(%13)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(366)/        return loss/#[CNode]114
+    %1 = FuncGraph::fg_30(%para13)    #(Tensor(U8)[28, 28, 1])    # fg_30=construct.30 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(49)/#x
+    %2 = FuncGraph::fg_37(%1)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(50)/#x
+    %3 = FuncGraph::fg_38(%2)    #(Undefined)    # fg_38=construct.38 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(51)/#x
+    %4 = FuncGraph::fg_39(%3)    #(Undefined)    # fg_39=construct.39 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(52)/#x
+    %5 = FuncGraph::fg_37(%4)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(53)/#x
+    %6 = FuncGraph::fg_38(%5)    #(Undefined)    # fg_38=construct.38 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(54)/#x
+    %7 = FuncGraph::fg_40(%6)    #(Undefined)    # fg_40=construct.40 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(55)/#x
+    %8 = FuncGraph::fg_41(%7)    #(Undefined)    # fg_41=construct.41 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(56)/#x
+    %9 = FuncGraph::fg_37(%8)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(57)/#x
+    %10 = FuncGraph::fg_42(%9)    #(Undefined)    # fg_42=construct.42 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(58)/#x
+    %11 = FuncGraph::fg_37(%10)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(59)/#x
+    %12 = FuncGraph::fg_43(%11)    #(Undefined)    # fg_43=construct.43 #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(60)/#x
+    Primitive::Return{prim_type=1}(%12)    #(Undefined) #scope: Default/_network-LeNet5
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(61)/#[CNode]44
 }
 # order:
-#   1: construct.90:loss{[0]: ValueNode<UnpackCall> unpack_call.115, [1]: ValueNode<FuncGraph> construct.94, [2]: [CNode]107}
-#   2: construct.90:[CNode]108{[0]: ValueNode<Primitive> getattr, [1]: loss, [2]: ValueNode<StringImm> dtype}
-#   3: construct.90:[CNode]109{[0]: ValueNode<Primitive> getattr, [1]: loss, [2]: ValueNode<StringImm> shape}
-#   4: construct.90:sens{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Fill, [1]: [CNode]108, [2]: [CNode]109, [3]: ValueNode<FP32Imm> 1.000000}
-#   5: construct.90:[CNode]110{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: sens}
-#   6: construct.90:grads{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> construct.94, [2]: [CNode]107, [3]: [CNode]110}
-#   7: construct.90:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: grads, [2]: [CNode]111}
-#   8: construct.90:grads{[0]: ValueNode<UnpackCall> unpack_call.116, [1]: grads, [2]: [CNode]107, [3]: [CNode]110}
-#   9: construct.90:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-identity, [1]: grads}
-#  10: construct.90:[CNode]113{[0]: ValueNode<FuncGraph> construct.112, [1]: grads}
-#  11: construct.90:loss{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Depend, [1]: loss, [2]: [CNode]113}
-#  12: construct.90:[CNode]114{[0]: ValueNode<Primitive> Return, [1]: loss}
+#   1: construct.29:x{[0]: ValueNode<FuncGraph> construct.30, [1]: x}
+#   2: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
+#   3: construct.29:x{[0]: ValueNode<FuncGraph> construct.38, [1]: x}
+#   4: construct.29:x{[0]: ValueNode<FuncGraph> construct.39, [1]: x}
+#   5: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
+#   6: construct.29:x{[0]: ValueNode<FuncGraph> construct.38, [1]: x}
+#   7: construct.29:x{[0]: ValueNode<FuncGraph> construct.40, [1]: x}
+#   8: construct.29:x{[0]: ValueNode<FuncGraph> construct.41, [1]: x}
+#   9: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
+#  10: construct.29:x{[0]: ValueNode<FuncGraph> construct.42, [1]: x}
+#  11: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
+#  12: construct.29:x{[0]: ValueNode<FuncGraph> construct.43, [1]: x}
+#  13: construct.29:[CNode]44{[0]: ValueNode<Primitive> Return, [1]: x}
 
 
-# [No.4] UnpackCall.91
-
-funcgraph fg_91(
-        %para33 : Func    # 92
-        , %para34 : Tuple[Tensor(F32)*2]    # 93
+# [No.4] construct.30
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(265)/    def construct(self, x):/
+funcgraph fg_30[fg_27](
+        %para14 : Tensor(U8)[28, 28, 1]    # x
     ) {
-    %1 : Tensor(F32)[64, 1, 28, 28] = Primitive::TupleGetItem{prim_type=1}(%para34, I64(0))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
-#117
-    %2 : Tensor(F32)[64] = Primitive::TupleGetItem{prim_type=1}(%para34, I64(1))    #(Tuple[Tensor(F32)*2], I64) #scope: Default
-#118
+    %1 : Bool = FuncGraph::fg_45(Bool(0))    #(Bool)    # fg_45=bool_.45 #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]46
+    %2 : Func = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_47, FuncGraph::fg_31)    #(Bool, Func, Func)    # fg_47=✓construct.47, fg_31=✗construct.31 #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]48
 
 #------------------------> 3
-    %3 = %para33(%1, %2)    #(Tensor(F32)[64, 1, 28, 28], Tensor(F32)[64]) #scope: Default
-#119
-    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
-#120
+    %3 = %2() #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]49
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]50
 }
 # order:
-#   1: UnpackCall.91:119{[0]: 92, [1]: 117, [2]: 118}
-#   2: UnpackCall.91:120{[0]: ValueNode<Primitive> Return, [1]: 119}
+#   1: construct.30:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Conv2D, [1]: x, [2]: conv1.weight}
+#   2: construct.30:[CNode]46{[0]: ValueNode<FuncGraph> bool_.45, [1]: ValueNode<BoolImm> false}
+#   3: construct.30:[CNode]48{[0]: ValueNode<Primitive> Switch, [1]: [CNode]46, [2]: ValueNode<FuncGraph> ✓construct.47, [3]: ValueNode<FuncGraph> ✗construct.31}
+#   4: construct.30:[CNode]49{[0]: [CNode]48}
+#   5: construct.30:[CNode]50{[0]: ValueNode<Primitive> Return, [1]: [CNode]49}
 
 
-# [No.5] construct.94
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(109)/    def construct(self, data, label):/
-funcgraph fg_94[fg_86](
-        %para35 : Tensor(F32)[64, 1, 28, 28]    # data
-        , %para36 : Tensor(F32)[64]    # label
-    ) {
-    %1 : Tensor(F32)[64, 10] = FuncGraph::fg_121(%para35)    #(Tensor(F32)[64, 1, 28, 28])    # fg_121=construct.121 #scope: Default/network-WithLossCell
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(110)/        out = self._backbone(data)/#out
+# [No.5] ✗construct.31
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/
+funcgraph fg_31[fg_30](
+) {
 
 #------------------------> 4
-    %2 = FuncGraph::fg_95(%1, %para36)    #(Tensor(F32)[64, 10], Tensor(F32)[64])    # fg_95=construct.95 #scope: Default/network-WithLossCell
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]122
-    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default/network-WithLossCell
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]123
+    %1 = $(construct.30):DoSignaturePrimitive::S-Prim-Conv2D{prim_type=1}[kernel_size=(I64(5), I64(5)), mode=I64(1), out_channel=I64(6), input_names=["x", "w"], pad=(I64(0), I64(0), I64(0), I64(0)), pad_mode=I64(2), format="NCHW", pad_list=(I64(0), I64(0), I64(0), I64(0)), groups=I64(1), stride=(I64(1), I64(1), I64(1), I64(1)), group=I64(1), dilation=(I64(1), I64(1), I64(1), I64(1)), output_names=["output"]](%para14, %para10)    #(Tensor(U8)[28, 28, 1], Ref[Tensor(F32)][6, 1, 5, 5]) #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(266)/        output = self.conv2d(x, self.weight)/#output
+    %2 = FuncGraph::fg_51(%1)    #(Undefined)    # fg_51=↓construct.51 #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]52
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default/_network-LeNet5/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]53
 }
 # order:
-#   1: construct.94:out{[0]: ValueNode<FuncGraph> construct.121, [1]: data}
-#   2: construct.94:[CNode]122{[0]: ValueNode<FuncGraph> construct.95, [1]: out, [2]: label}
-#   3: construct.94:[CNode]123{[0]: ValueNode<Primitive> Return, [1]: [CNode]122}
-
-
-# [No.6] construct.95
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(622)/    def construct(self, logits, labels):/
-funcgraph fg_95(
-        %para37 : Tensor(F32)[64, 10]    # Φlogits
-        , %para38 : Tensor(F32)[64]    # labels
-    ) {
-    %1 : NoneType = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("logits", %para37, "SoftmaxCrossEntropyWithLogits")    #(String, Tensor(F32)[64, 10], String) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(623)/        _check_is_tensor('logits', logits, self.cls_name)/#[CNode]124
-    %2 : NoneType = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("labels", %para38, "SoftmaxCrossEntropyWithLogits")    #(String, Tensor(F32)[64], String) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(624)/        _check_is_tensor('labels', labels, self.cls_name)/#[CNode]125
-    %3 : Tuple[NoneType*2] = Primitive::MakeTuple{prim_type=1}(%1, %2)    #(NoneType, NoneType) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]126
-    %4 : Tuple[NoneType*2] = Primitive::stop_gradient{prim_type=1}(%3)    #(Tuple[NoneType*2]) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]127
-    %5 : Bool = FuncGraph::fg_128(Bool(1))    #(Bool)    # fg_128=bool_.128 #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(625)/        if self.sparse:/#[CNode]129
-    %6 : Func = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_96, FuncGraph::fg_130)    #(Bool, Func, Func)    # fg_96=✓construct.96, fg_130=✗construct.130 #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(625)/        if self.sparse:/#[CNode]131
-
-#------------------------> 5
-    %7 = %6() #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(625)/        if self.sparse:/#[CNode]132
-    %8 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%7, %4)    #(Undefined, Tuple[NoneType*2]) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]133
-    Primitive::Return{prim_type=1}(%8)    #(Undefined) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(625)/        if self.sparse:/#[CNode]134
-}
-# order:
-#   1: construct.95:[CNode]124{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> logits, [2]: Φlogits, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   2: construct.95:[CNode]125{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> labels, [2]: labels, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   3: construct.95:[CNode]129{[0]: ValueNode<FuncGraph> bool_.128, [1]: ValueNode<BoolImm> true}
-#   4: construct.95:[CNode]131{[0]: ValueNode<Primitive> Switch, [1]: [CNode]129, [2]: ValueNode<FuncGraph> ✓construct.96, [3]: ValueNode<FuncGraph> ✗construct.130}
-#   5: construct.95:[CNode]132{[0]: [CNode]131}
-#   6: construct.95:[CNode]134{[0]: ValueNode<Primitive> Return, [1]: [CNode]133}
-
-
-# [No.7] ✓construct.96
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(625)/        if self.sparse:/
-funcgraph fg_96[fg_95](
-) {
-    %1 : Bool = DoSignaturePrimitive::S-Prim-equal{prim_type=1}("mean", "mean")    #(String, String) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/#[CNode]135
-    %2 : Bool = FuncGraph::fg_128(%1)    #(Bool)    # fg_128=bool_.128 #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/#[CNode]136
-    %3 : Func = Primitive::Switch{prim_type=1}(%2, FuncGraph::fg_97, FuncGraph::fg_137)    #(Bool, Func, Func)    # fg_97=✓✓construct.97, fg_137=✗✓construct.137 #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/#[CNode]138
-
-#------------------------> 6
-    %4 = %3() #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/#[CNode]139
-    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/#[CNode]140
-}
-# order:
-#   1: ✓construct.96:[CNode]135{[0]: ValueNode<DoSignaturePrimitive> S-Prim-equal, [1]: ValueNode<StringImm> mean, [2]: ValueNode<StringImm> mean}
-#   2: ✓construct.96:[CNode]136{[0]: ValueNode<FuncGraph> bool_.128, [1]: [CNode]135}
-#   3: ✓construct.96:[CNode]138{[0]: ValueNode<Primitive> Switch, [1]: [CNode]136, [2]: ValueNode<FuncGraph> ✓✓construct.97, [3]: ValueNode<FuncGraph> ✗✓construct.137}
-#   4: ✓construct.96:[CNode]139{[0]: [CNode]138}
-#   5: ✓construct.96:[CNode]140{[0]: ValueNode<Primitive> Return, [1]: [CNode]139}
-
-
-# [No.8] ✓✓construct.97
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(626)/            if self.reduction == 'mean':/
-funcgraph fg_97[fg_95](
-) {
-
-#------------------------> 7
-    %1 = DoSignaturePrimitive::S-Prim-SparseSoftmaxCrossEntropyWithLogits{prim_type=1}[output_names=["output"], input_names=["features", "labels"], sens=F32(1), is_grad=Bool(0)](%para37, %para38)    #(Tensor(F32)[64, 10], Tensor(F32)[64]) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(627)/                x = self.sparse_softmax_cross_entropy(logits, labels)/#x
-    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default/network-WithLossCell/_loss_fn-SoftmaxCrossEntropyWithLogits
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\loss\loss.py(628)/                return x/#[CNode]141
-}
-# order:
-#   1: ✓✓construct.97:x{[0]: ValueNode<DoSignaturePrimitive> S-Prim-SparseSoftmaxCrossEntropyWithLogits, [1]: Φlogits, [2]: labels}
-#   2: ✓✓construct.97:[CNode]141{[0]: ValueNode<Primitive> Return, [1]: x}
+#   1: ✗construct.31:[CNode]52{[0]: ValueNode<FuncGraph> ↓construct.51, [1]: output}
+#   2: ✗construct.31:[CNode]53{[0]: ValueNode<Primitive> Return, [1]: [CNode]52}
 
 
 #===============================================================================
-# num of function graphs in stack: 8/9 (Ignored 1 internal frames).
+# num of function graphs in stack: 5/6 (Ignored 1 internal frames).
