@@ -1,141 +1,119 @@
-# [No.1] construct_wrapper.27
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(109)/    def construct(self, data, label):/
-funcgraph fg_27(
-        %para1 : Tensor(U8)[28, 28, 1]    # data
-        , %para2 : Tensor(U32)[]    # label
-        , %para3 : Ref[Tensor(F32)][10]    # fc3.bias
-        , %para4 : Ref[Tensor(F32)][10, 84]    # fc3.weight
-        , %para5 : Ref[Tensor(F32)][84]    # fc2.bias
-        , %para6 : Ref[Tensor(F32)][84, 120]    # fc2.weight
-        , %para7 : Ref[Tensor(F32)][16, 6, 5, 5]    # conv2.weight
-        , %para8 : Ref[Tensor(F32)][120]    # fc1.bias
-        , %para9 : Ref[Tensor(F32)][120, 256]    # fc1.weight
-        , %para10 : Ref[Tensor(F32)][6, 1, 5, 5]    # conv1.weight
+# [No.1] construct_wrapper.58
+# In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(47)/
+funcgraph fg_58(
+        %para1 : Tensor(F32)[1, 28, 28]    # x
+        , %para2 : Ref[Tensor(F32)][10]    # fc3.bias
+        , %para3 : Ref[Tensor(F32)][10, 84]    # fc3.weight
+        , %para4 : Ref[Tensor(F32)][84]    # fc2.bias
+        , %para5 : Ref[Tensor(F32)][84, 120]    # fc2.weight
+        , %para6 : Ref[Tensor(F32)][16, 6, 5, 5]    # conv2.weight
+        , %para7 : Ref[Tensor(F32)][120]    # fc1.bias
+        , %para8 : Ref[Tensor(F32)][120, 256]    # fc1.weight
+        , %para9 : Ref[Tensor(F32)][6, 1, 5, 5]    # conv1.weight
     ) {
 
 #------------------------> 0
-    %1 = FuncGraph::fg_28(%para1, %para2)    #(Tensor(U8)[28, 28, 1], Tensor(U32)[])    # fg_28=construct.28 #scope: Default
-#[CNode]32
+    %1 = FuncGraph::fg_59(%para1)    #(Tensor(F32)[1, 28, 28])    # fg_59=construct.59 #scope: Default
+#[CNode]62
     Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]33
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(61)/#[CNode]63
 }
 # order:
-#   1: construct_wrapper.27:[CNode]32{[0]: ValueNode<FuncGraph> construct.28, [1]: data, [2]: label}
-#   2: construct_wrapper.27:[CNode]33{[0]: ValueNode<Primitive> Return, [1]: [CNode]32}
+#   1: construct_wrapper.58:[CNode]62{[0]: ValueNode<FuncGraph> construct.59, [1]: x}
+#   2: construct_wrapper.58:[CNode]63{[0]: ValueNode<Primitive> Return, [1]: [CNode]62}
 
 
-# [No.2] construct.28
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(109)/    def construct(self, data, label):/
-funcgraph fg_28[fg_27](
-        %para11 : Tensor(U8)[28, 28, 1]    # data
-        , %para12 : Tensor(U32)[]    # label
+# [No.2] construct.59
+# In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(47)/
+funcgraph fg_59[fg_58](
+        %para10 : Tensor(F32)[1, 28, 28]    # x
     ) {
 
 #------------------------> 1
-    %1 = FuncGraph::fg_29(%para11)    #(Tensor(U8)[28, 28, 1])    # fg_29=construct.29 #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(110)/        out = self._backbone(data)/#out
-    %2 = FuncGraph::fg_34(%1, %para12)    #(Undefined, Tensor(U32)[])    # fg_34=construct.34 #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]35
-    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\wrap\cell_wrapper.py(111)/        return self._loss_fn(out, label)/#[CNode]36
+    %1 = FuncGraph::fg_60(%para10)    #(Tensor(F32)[1, 28, 28])    # fg_60=construct.60 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(49)/#x
+    %2 = FuncGraph::fg_64(%1)    #(Undefined)    # fg_64=construct.64 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(50)/#x
+    %3 = FuncGraph::fg_65(%2)    #(Undefined)    # fg_65=construct.65 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(51)/#x
+    %4 = FuncGraph::fg_66(%3)    #(Undefined)    # fg_66=construct.66 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(52)/#x
+    %5 = FuncGraph::fg_64(%4)    #(Undefined)    # fg_64=construct.64 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(53)/#x
+    %6 = FuncGraph::fg_65(%5)    #(Undefined)    # fg_65=construct.65 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(54)/#x
+    %7 = FuncGraph::fg_67(%6)    #(Undefined)    # fg_67=construct.67 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(55)/#x
+    %8 = FuncGraph::fg_68(%7)    #(Undefined)    # fg_68=construct.68 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(56)/#x
+    %9 = FuncGraph::fg_64(%8)    #(Undefined)    # fg_64=construct.64 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(57)/#x
+    %10 = FuncGraph::fg_69(%9)    #(Undefined)    # fg_69=construct.69 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(58)/#x
+    %11 = FuncGraph::fg_64(%10)    #(Undefined)    # fg_64=construct.64 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(59)/#x
+    %12 = FuncGraph::fg_70(%11)    #(Undefined)    # fg_70=construct.70 #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(60)/#x
+    Primitive::Return{prim_type=1}(%12)    #(Undefined) #scope: Default
+      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(61)/#[CNode]71
 }
 # order:
-#   1: construct.28:out{[0]: ValueNode<FuncGraph> construct.29, [1]: data}
-#   2: construct.28:[CNode]35{[0]: ValueNode<FuncGraph> construct.34, [1]: out, [2]: label}
-#   3: construct.28:[CNode]36{[0]: ValueNode<Primitive> Return, [1]: [CNode]35}
+#   1: construct.59:x{[0]: ValueNode<FuncGraph> construct.60, [1]: x}
+#   2: construct.59:x{[0]: ValueNode<FuncGraph> construct.64, [1]: x}
+#   3: construct.59:x{[0]: ValueNode<FuncGraph> construct.65, [1]: x}
+#   4: construct.59:x{[0]: ValueNode<FuncGraph> construct.66, [1]: x}
+#   5: construct.59:x{[0]: ValueNode<FuncGraph> construct.64, [1]: x}
+#   6: construct.59:x{[0]: ValueNode<FuncGraph> construct.65, [1]: x}
+#   7: construct.59:x{[0]: ValueNode<FuncGraph> construct.67, [1]: x}
+#   8: construct.59:x{[0]: ValueNode<FuncGraph> construct.68, [1]: x}
+#   9: construct.59:x{[0]: ValueNode<FuncGraph> construct.64, [1]: x}
+#  10: construct.59:x{[0]: ValueNode<FuncGraph> construct.69, [1]: x}
+#  11: construct.59:x{[0]: ValueNode<FuncGraph> construct.64, [1]: x}
+#  12: construct.59:x{[0]: ValueNode<FuncGraph> construct.70, [1]: x}
+#  13: construct.59:[CNode]71{[0]: ValueNode<Primitive> Return, [1]: x}
 
 
-# [No.3] construct.29
-# In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(47)/
-funcgraph fg_29[fg_27](
-        %para13 : Tensor(U8)[28, 28, 1]    # x
+# [No.3] construct.60
+# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(265)/    def construct(self, x):/
+funcgraph fg_60[fg_58](
+        %para11 : Tensor(F32)[1, 28, 28]    # x
     ) {
+    %1 : Bool = FuncGraph::fg_72(Bool(0))    #(Bool)    # fg_72=bool_.72 #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]73
+    %2 : Func = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_74, FuncGraph::fg_61)    #(Bool, Func, Func)    # fg_74=✓construct.74, fg_61=✗construct.61 #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]75
 
 #------------------------> 2
-    %1 = FuncGraph::fg_30(%para13)    #(Tensor(U8)[28, 28, 1])    # fg_30=construct.30 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(49)/#x
-    %2 = FuncGraph::fg_37(%1)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(50)/#x
-    %3 = FuncGraph::fg_38(%2)    #(Undefined)    # fg_38=construct.38 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(51)/#x
-    %4 = FuncGraph::fg_39(%3)    #(Undefined)    # fg_39=construct.39 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(52)/#x
-    %5 = FuncGraph::fg_37(%4)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(53)/#x
-    %6 = FuncGraph::fg_38(%5)    #(Undefined)    # fg_38=construct.38 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(54)/#x
-    %7 = FuncGraph::fg_40(%6)    #(Undefined)    # fg_40=construct.40 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(55)/#x
-    %8 = FuncGraph::fg_41(%7)    #(Undefined)    # fg_41=construct.41 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(56)/#x
-    %9 = FuncGraph::fg_37(%8)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(57)/#x
-    %10 = FuncGraph::fg_42(%9)    #(Undefined)    # fg_42=construct.42 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(58)/#x
-    %11 = FuncGraph::fg_37(%10)    #(Undefined)    # fg_37=construct.37 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(59)/#x
-    %12 = FuncGraph::fg_43(%11)    #(Undefined)    # fg_43=construct.43 #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(60)/#x
-    Primitive::Return{prim_type=1}(%12)    #(Undefined) #scope: Default/_network-LeNet5
-      # In file C:\Users\Administrator\AppData\Local\Temp\ipykernel_6188\45943137.py(61)/#[CNode]44
+    %3 = %2() #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]76
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]77
 }
 # order:
-#   1: construct.29:x{[0]: ValueNode<FuncGraph> construct.30, [1]: x}
-#   2: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
-#   3: construct.29:x{[0]: ValueNode<FuncGraph> construct.38, [1]: x}
-#   4: construct.29:x{[0]: ValueNode<FuncGraph> construct.39, [1]: x}
-#   5: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
-#   6: construct.29:x{[0]: ValueNode<FuncGraph> construct.38, [1]: x}
-#   7: construct.29:x{[0]: ValueNode<FuncGraph> construct.40, [1]: x}
-#   8: construct.29:x{[0]: ValueNode<FuncGraph> construct.41, [1]: x}
-#   9: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
-#  10: construct.29:x{[0]: ValueNode<FuncGraph> construct.42, [1]: x}
-#  11: construct.29:x{[0]: ValueNode<FuncGraph> construct.37, [1]: x}
-#  12: construct.29:x{[0]: ValueNode<FuncGraph> construct.43, [1]: x}
-#  13: construct.29:[CNode]44{[0]: ValueNode<Primitive> Return, [1]: x}
+#   1: construct.60:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Conv2D, [1]: x, [2]: conv1.weight}
+#   2: construct.60:[CNode]73{[0]: ValueNode<FuncGraph> bool_.72, [1]: ValueNode<BoolImm> false}
+#   3: construct.60:[CNode]75{[0]: ValueNode<Primitive> Switch, [1]: [CNode]73, [2]: ValueNode<FuncGraph> ✓construct.74, [3]: ValueNode<FuncGraph> ✗construct.61}
+#   4: construct.60:[CNode]76{[0]: [CNode]75}
+#   5: construct.60:[CNode]77{[0]: ValueNode<Primitive> Return, [1]: [CNode]76}
 
 
-# [No.4] construct.30
-# In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(265)/    def construct(self, x):/
-funcgraph fg_30[fg_27](
-        %para14 : Tensor(U8)[28, 28, 1]    # x
-    ) {
-    %1 : Bool = FuncGraph::fg_45(Bool(0))    #(Bool)    # fg_45=bool_.45 #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]46
-    %2 : Func = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_47, FuncGraph::fg_31)    #(Bool, Func, Func)    # fg_47=✓construct.47, fg_31=✗construct.31 #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]48
-
-#------------------------> 3
-    %3 = %2() #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]49
-    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]50
-}
-# order:
-#   1: construct.30:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Conv2D, [1]: x, [2]: conv1.weight}
-#   2: construct.30:[CNode]46{[0]: ValueNode<FuncGraph> bool_.45, [1]: ValueNode<BoolImm> false}
-#   3: construct.30:[CNode]48{[0]: ValueNode<Primitive> Switch, [1]: [CNode]46, [2]: ValueNode<FuncGraph> ✓construct.47, [3]: ValueNode<FuncGraph> ✗construct.31}
-#   4: construct.30:[CNode]49{[0]: [CNode]48}
-#   5: construct.30:[CNode]50{[0]: ValueNode<Primitive> Return, [1]: [CNode]49}
-
-
-# [No.5] ✗construct.31
+# [No.4] ✗construct.61
 # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/
-funcgraph fg_31[fg_30](
+funcgraph fg_61[fg_60](
 ) {
 
-#------------------------> 4
-    %1 = $(construct.30):DoSignaturePrimitive::S-Prim-Conv2D{prim_type=1}[kernel_size=(I64(5), I64(5)), mode=I64(1), out_channel=I64(6), input_names=["x", "w"], pad=(I64(0), I64(0), I64(0), I64(0)), pad_mode=I64(2), format="NCHW", pad_list=(I64(0), I64(0), I64(0), I64(0)), groups=I64(1), stride=(I64(1), I64(1), I64(1), I64(1)), group=I64(1), dilation=(I64(1), I64(1), I64(1), I64(1)), output_names=["output"]](%para14, %para10)    #(Tensor(U8)[28, 28, 1], Ref[Tensor(F32)][6, 1, 5, 5]) #scope: Default/_network-LeNet5/conv1-Conv2d
+#------------------------> 3
+    %1 = $(construct.60):DoSignaturePrimitive::S-Prim-Conv2D{prim_type=1}[kernel_size=(I64(5), I64(5)), stride=(I64(1), I64(1), I64(1), I64(1)), mode=I64(1), out_channel=I64(6), group=I64(1), input_names=["x", "w"], pad=(I64(0), I64(0), I64(0), I64(0)), dilation=(I64(1), I64(1), I64(1), I64(1)), pad_mode=I64(2), output_names=["output"], format="NCHW", groups=I64(1)](%para11, %para9)    #(Tensor(F32)[1, 28, 28], Ref[Tensor(F32)][6, 1, 5, 5]) #scope: Default/conv1-Conv2d
       # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(266)/        output = self.conv2d(x, self.weight)/#output
-    %2 = FuncGraph::fg_51(%1)    #(Undefined)    # fg_51=↓construct.51 #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]52
-    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default/_network-LeNet5/conv1-Conv2d
-      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]53
+    %2 = FuncGraph::fg_78(%1)    #(Undefined)    # fg_78=↓construct.78 #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]79
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default/conv1-Conv2d
+      # In file D:\Anaconda3\envs\mindsp161\lib\site-packages\mindspore\nn\layer\conv.py(267)/        if self.has_bias:/#[CNode]80
 }
 # order:
-#   1: ✗construct.31:[CNode]52{[0]: ValueNode<FuncGraph> ↓construct.51, [1]: output}
-#   2: ✗construct.31:[CNode]53{[0]: ValueNode<Primitive> Return, [1]: [CNode]52}
+#   1: ✗construct.61:[CNode]79{[0]: ValueNode<FuncGraph> ↓construct.78, [1]: output}
+#   2: ✗construct.61:[CNode]80{[0]: ValueNode<Primitive> Return, [1]: [CNode]79}
 
 
 #===============================================================================
-# num of function graphs in stack: 5/6 (Ignored 1 internal frames).
+# num of function graphs in stack: 4/5 (Ignored 1 internal frames).
